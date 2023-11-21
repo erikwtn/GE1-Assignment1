@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6ivw25a5tcmr"]
+
+[ext_resource type="Script" path="res://MainScene.gd" id="1_h5ryx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hec3w"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qbgxi"]
+
+[node name="RootNode3D" type="Node3D"]
+script = ExtResource("1_h5ryx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_hec3w")
+
+[node name="Player" type="Node3D" parent="."]
+
+[node name="XROrigin3D" type="XROrigin3D" parent="Player"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="Player/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11542, 0)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Player/XROrigin3D/XRCamera3D"]
+
+[node name="LeftXRController" type="XRController3D" parent="Player/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.154713, 0, 0)
+tracker = &"left_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/XROrigin3D/LeftXRController"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = SubResource("BoxMesh_qbgxi")
+
+[node name="RightXRController" type="XRController3D" parent="Player/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.124803, 0, 0)
+tracker = &"right_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/XROrigin3D/RightXRController"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = SubResource("BoxMesh_qbgxi")

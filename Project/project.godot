@@ -22,3 +22,7 @@ project/assembly_name="GE1Assignment1"
 
 renderer/rendering_method="mobile"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[xr]
+
+shaders/enabled=true
