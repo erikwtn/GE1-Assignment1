@@ -1,4 +1,0 @@
-#Thu Nov 23 17:39:36 GMT 2023
-base.0=C\:\\Users\\Sheab\\My project\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\launcher\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
