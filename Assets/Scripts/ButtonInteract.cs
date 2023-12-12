@@ -18,6 +18,9 @@ public class ButtonInteract : MonoBehaviour
     private Transform pokeAttachTransform;
     private XRBaseInteractable interactable;
     private bool isFollowing = false;
+    [SerializeField] private GameObject uiTrigger;
+
+    [SerializeField] private GameObject gameManager;
     // Start is called before the first frame update
 
     void Start()
@@ -27,6 +30,7 @@ public class ButtonInteract : MonoBehaviour
         interactable.hoverEntered.AddListener(Follow);
         interactable.hoverExited.AddListener(Reset);
         interactable.selectEntered.AddListener(Freeze);
+        interactable.selectEntered.AddListener(OpenPassword);
     }
 
     public void Follow(BaseInteractionEventArgs hover)
@@ -63,6 +67,21 @@ public class ButtonInteract : MonoBehaviour
         if (hover.interactorObject is XRPokeInteractor)
         {
             freeze = true;
+        }
+    }
+
+    private void OpenPassword(SelectEnterEventArgs select)
+    {
+        if (select.interactorObject is XRPokeInteractor)
+        {
+            if (uiTrigger.activeSelf == false)
+            {
+                uiTrigger.SetActive(true);
+            }
+            else if (uiTrigger.activeSelf == true)
+            {
+                uiTrigger.SetActive(false);
+            }
         }
     }
 
