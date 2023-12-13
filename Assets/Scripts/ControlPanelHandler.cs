@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +7,7 @@ public class ControlPanelHandler : MonoBehaviour
 {
     private Slider _ySlider, _vSlider, _mSlider;
     [SerializeField] private TextMeshProUGUI yTxt, vTxt, mTxt;
+    [SerializeField] private float currentYear = 0;
 
     public void SliderChanged(Slider slider)
     {
@@ -30,9 +30,97 @@ public class ControlPanelHandler : MonoBehaviour
 
     public void CheckValues()
     {
-        if (_ySlider != null && _vSlider != null && _mSlider != null)
+        if (CheckYear())
         {
-            
+            if (CheckVoltage())
+            {
+                if (CheckMass())
+                {
+                    // inputs were correct and travel is successful
+                } 
+                // else fail
+            } 
+            // else fail
         }
+        // else fail
+    }
+
+    private bool CheckYear()
+    {
+        if (_ySlider == null || _vSlider == null || _mSlider == null) return false; // check if sliders have been changed
+        
+        if (currentYear + Mathf.Abs(_ySlider.value) > currentYear + 10) // check if the year has been changed too much
+        {
+            return false;
+        }
+
+        if (currentYear + Mathf.Abs(_ySlider.value) <= currentYear + 10) // if the year has been changed to an allowed range
+        {
+            if (currentYear + _ySlider.value <= -30) // check  if the year has been changed too far back
+            {
+                // empty scene
+            }
+            
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool CheckVoltage()
+    {
+        float[] voltagesAllowed = {240, 400, 480, 600};
+        var hasPassed = false;
+        float j = 0;
+
+        foreach (var f in voltagesAllowed) // check if the input is within range of allowed voltages
+        {
+            if (Math.Abs(_vSlider.value - f) < 20) // check tolerance
+            {
+                j = f;
+                hasPassed = true;
+            }
+        }
+
+        if (!hasPassed) return false;
+        
+        var d = (Mathf.Abs(currentYear) + Mathf.Abs(_ySlider.value));
+        switch (d)
+        {
+            case >= 0 and < 10:
+                if (j == voltagesAllowed[0])
+                {
+                    return true;
+                }
+                break;
+            case >= 10 and < 20:
+                if (j == voltagesAllowed[1])
+                {
+                    return true;
+                }
+                break;
+            case >= 20 and < 30:
+                if (j == voltagesAllowed[2])
+                {
+                    return true;
+                }
+                break;
+            case >= 30 and <= 50:
+                if (j == voltagesAllowed[3])
+                {
+                    return true;
+                }
+                break;
+        }
+
+        return false;
+    }
+
+    private bool CheckMass() // check if abs(years * voltage) is within tolerance and correct
+    {
+        var t = _ySlider.value * _vSlider.value;
+        var c = t / 100;
+
+        return Math.Abs(_vSlider.value - t) < c;
     }
 }

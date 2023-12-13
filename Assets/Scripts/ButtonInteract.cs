@@ -7,6 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ButtonInteract : MonoBehaviour
 {
+    // adapted from https://youtu.be/bts8VkDP_vU?si=y_qVWZlA0i26neHe
     public Transform visualTarget;
     public Vector3 localAxis;
     public float resetSpeed = 5;
