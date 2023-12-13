@@ -31,6 +31,7 @@ public class ButtonInteract : MonoBehaviour
         interactable.hoverExited.AddListener(Reset);
         interactable.selectEntered.AddListener(Freeze);
         interactable.selectEntered.AddListener(OpenPassword);
+        uiTrigger.SetActive(false);
     }
 
     public void Follow(BaseInteractionEventArgs hover)
