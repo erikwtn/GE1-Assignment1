@@ -8,6 +8,7 @@ public class ControlPanelHandler : MonoBehaviour
     private Slider _ySlider, _vSlider, _mSlider;
     [SerializeField] private TextMeshProUGUI yTxt, vTxt, mTxt;
     [SerializeField] private float currentYear = 0;
+    
 
     public void SliderChanged(Slider slider)
     {
@@ -85,32 +86,25 @@ public class ControlPanelHandler : MonoBehaviour
         if (!hasPassed) return false;
         
         var d = (Mathf.Abs(currentYear) + Mathf.Abs(_ySlider.value));
-        switch (d)
+        
+        if (j == voltagesAllowed[0] && d is >= 0 and < 10)
         {
-            case >= 0 and < 10:
-                if (j == voltagesAllowed[0])
-                {
-                    return true;
-                }
-                break;
-            case >= 10 and < 20:
-                if (j == voltagesAllowed[1])
-                {
-                    return true;
-                }
-                break;
-            case >= 20 and < 30:
-                if (j == voltagesAllowed[2])
-                {
-                    return true;
-                }
-                break;
-            case >= 30 and <= 50:
-                if (j == voltagesAllowed[3])
-                {
-                    return true;
-                }
-                break;
+            return true;
+        }
+
+        if (j == voltagesAllowed[1] && d is >= 10 and < 20)
+        {
+            return true;
+        }
+
+        if (j == voltagesAllowed[2] && d is >= 20 and < 30)
+        {
+            return true;
+        }
+
+        if (j == voltagesAllowed[3] && d is >= 30 and <= 50)
+        {
+            return true;
         }
 
         return false;
