@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ControlPanelHandler : MonoBehaviour
@@ -54,7 +55,7 @@ public class ControlPanelHandler : MonoBehaviour
                 if (CheckMass())
                 {
                     sParticle.Play();
-                    Debug.Log("Passed");
+                    WinCondition();
                 }
                 else
                 {
@@ -85,7 +86,7 @@ public class ControlPanelHandler : MonoBehaviour
         {
             if (currentYear + _ySlider.value <= -30) // check  if the year has been changed too far back
             {
-                // empty scene
+                SceneManager.LoadScene(sceneBuildIndex: 2);
             }
             
             return true;
@@ -149,5 +150,10 @@ public class ControlPanelHandler : MonoBehaviour
     private void FailCondition()
     {
        sphereAnim.SetTrigger(Failed);
+    }
+
+    private void WinCondition()
+    {
+        SceneManager.LoadScene(sceneBuildIndex: 1);
     }
 }
