@@ -8,7 +8,7 @@ Class Group: TU984/3 (3rd Year Game Design)
 
 Video:
 
-[![YouTube](img)()]
+[![YouTube](https://i9.ytimg.com/vi/xrN_CFVcOek/mqdefault.jpg?sqp=CJCM8qsG-oaymwEmCMACELQB8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGGUgZShlMA8=&rs=AOn4CLCcDey3pKIss_SgKD17qUtQK_QLUQ)](https://youtu.be/xrN_CFVcOek)
 
 # Description of the project
 This project is a VR simulation of being a lone researcher figuring out values to travel in time. Once values are inputted correctly you may travel to the future or the past. If they are input incorrectly you will travel to an unknown time and space. The project was made in Unity.
